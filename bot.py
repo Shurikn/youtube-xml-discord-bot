@@ -5,7 +5,9 @@ import discord
 import time
 import feedparser
 
-with open("config.json") as json_file:
+configfile = "config.json"
+
+with open(configfile) as json_file:
     configs = json.load(json_file)
 configs["last_run"] = time.time()
 feed = feedparser.parse(configs["feed_url"])
@@ -25,20 +27,19 @@ if len(to_post) > 0:
 
     @client.event
     async def on_ready():
-        print('Logged in as')
+        print("Logged in as")
         print(client.user.name)
         print(client.user.id)
-        print('------')
+        print("------")
         channel = client.get_channel(configs["channel_id"])
         for link in to_post:
             await channel.send(link)
-        with open('config.json', 'w') as outfile:
+        with open(configfile, "w") as outfile:
             json.dump(configs, outfile)
             sys.exit()
 
     client.run(configs["token"])
 else:
-    with open('config.json', 'w') as outfile:
+    with open(configfile, "w") as outfile:
         json.dump(configs, outfile)
         sys.exit()
-
