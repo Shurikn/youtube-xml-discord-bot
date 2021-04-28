@@ -1,8 +1,13 @@
 {
-  "feed_url": "http://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID",
+  "config_version": 2,
   "token": "TOKEN",
-  "channel_id": CHANNEL_ID,
   "last_run": 0,
-  "last_post_time": 0,
-  "total_item_posted": 0
+  "configs":[
+    {
+      "feed_urls": ["http://www.youtube.com/feeds/videos.xml?channel_id=CHANNEL_ID"],
+      "channel_ids": [CHANNEL_ID],
+      "last_post_time": 0,
+      "total_item_posted": 0
+    }
+  ]
 }
