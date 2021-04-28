@@ -21,7 +21,7 @@ while i >= 0:
     i -= 1
 
 if len(to_post) > 0:
-    client = discord.Client()
+    client = discord.Client(chunk_guilds_at_startup=False)
 
     @client.event
     async def on_ready():
