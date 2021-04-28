@@ -6,13 +6,27 @@ import time
 import feedparser
 
 config_file = "config.json"
+current_config_version=2
 
 with open(config_file) as json_file:
     config = json.load(json_file)
 
 if "config_version" not in config:
     # upgrade the config file from v0 to current version
-    print("a")
+    new_config= {
+        "config_version": current_config_version,
+        "token":config["token"],
+        "last_run":config["last_run"],
+        "configs":[
+            {
+                "feed_urls":[config["feed_url"]],
+                "channel_ids":[config["channel_id"]],
+                "last_post_time":config["last_post_time"],
+                "total_item_posted":config["total_item_posted"]
+            }
+        ]
+    }
+    config=new_config
 # if version of the config file exist, check the last version and upgrade to new version
 
 config["last_run"] = time.time()
